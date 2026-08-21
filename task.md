@@ -1,0 +1,53 @@
+# Project Task List
+
+- [x] **Phase 1: Setup React + Vite + Tailwind CSS**
+    - [x] Initialize Vite React JS project
+    - [x] Install packages (axios, msw, react-router-dom, @tanstack/react-query, framer-motion, @playwright/test)
+    - [x] Configure Tailwind CSS
+    - [x] Test local dev setup
+- [x] **Phase 2: Create Folder Architecture & Routing**
+    - [x] Setup folder structure (`api/`, `components/`, `context/`, `hooks/`, `layouts/`, `mocks/`, `pages/`, `routes/`, `utils/`, `providers/`)
+    - [x] Configure `AppRoutes.jsx` for all pages
+- [x] **Phase 3: Implement Role Selection & RBAC**
+    - [x] Create `AuthContext.jsx` for user state
+    - [x] Create `permissions.jsx` defining roles and permissions
+    - [x] Create `ProtectedRoute.jsx` for route guard
+    - [x] Create `PermissionGate.jsx` for action gating
+    - [x] Design Role Selection and Unauthorized pages
+- [x] **Phase 4: Setup Axios & MSW Mock Backend**
+    - [x] Setup seed data in `mocks/data.jsx`
+    - [x] Build handlers in `mocks/handlers.jsx` (validate roles, closed elections, duplicate votes, validation)
+    - [x] Build `mocks/browser.jsx`
+    - [x] Integrate MSW worker in `main.jsx`
+    - [x] Setup `axiosClient.jsx` and individual API modules (`electionApi.jsx`, `candidateApi.jsx`, `voteApi.jsx`, `managerApi.jsx`)
+- [x] **Phase 5: Integrate TanStack Query**
+    - [x] Setup `QueryProvider.jsx`
+    - [x] Build query hooks (`useElectionQuery.jsx`, `useCandidatesQuery.jsx`, `useCandidateQuery.jsx`, `useTallyQuery.jsx`)
+    - [x] Build mutation hooks (`useVoteMutation.jsx`, `useCandidateMutation.jsx`, `useElectionMutation.jsx`)
+- [x] **Phase 6: Build Student Voter Features**
+    - [x] Build Student Layout with responsive navbar/sidebar
+    - [x] Build Dashboard (list of categories, vote status)
+    - [x] Build Candidate Discovery (grid, search, filtering)
+    - [x] Build Candidate Profile and Manifesto page
+    - [x] Build Voting Confirmation Modal
+    - [x] Build Vote Receipt Card
+- [x] **Phase 7: Build Election Manager Features**
+    - [x] Build Manager Layout with sidebar
+    - [x] Build Dashboard (toggle open/close voting, stats)
+    - [x] Build Candidate Management (table, add/edit form)
+    - [x] Build Live Tally page with bar charts
+- [x] **Phase 8: Add Framer Motion Interactions**
+    - [x] Add page transitions (`PageTransition.jsx`)
+    - [x] Add card hover animations (`MotionCandidateCard.jsx`)
+    - [x] Add modal animations (`AnimatedModal.jsx`)
+    - [x] Add tally bar progress animations (`MotionTallyBar.jsx`)
+- [x] **Phase 9: Add Playwright E2E Tests**
+    - [x] Write student voting test (`tests/student-voting.spec.jsx`)
+    - [x] Write duplicate vote test (`tests/duplicate-vote.spec.jsx`)
+    - [x] Write manager workflow test (`tests/manager-flow.spec.jsx`)
+    - [x] Write RBAC protection test (`tests/rbac.spec.jsx`)
+    - [x] Write closed election test (`tests/closed-election.spec.jsx`)
+    - [x] Write responsive design layout test (`tests/responsive.spec.jsx`)
+- [x] **Phase 10: Polish, Accessibility & Walkthrough**
+    - [x] Implement keyboard support, labels, focus trapping
+    - [x] Create walkthrough.md summary with screenshots/visuals
