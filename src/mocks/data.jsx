@@ -46,21 +46,64 @@ export let receipts = loadFromStorage('voting_receipts', []);
 export let managers = loadFromStorage('voting_managers', [...initialManagers]);
 export let validStudents = loadFromStorage('voting_valid_students', [...initialValidStudents]);
 
-// DOB cleanup: Convert voting_valid_students back to raw student ID strings to clear all predefined DOBs from localStorage
-if (isBrowser) {
-  try {
-    const stored = window.localStorage.getItem('voting_valid_students');
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === 'object') {
-        const cleaned = parsed.map(item => item && typeof item === 'object' ? (item.studentId || item.id) : item).filter(Boolean);
-        window.localStorage.setItem('voting_valid_students', JSON.stringify(cleaned));
-        validStudents = cleaned;
-      }
-    }
-  } catch (e) {
-    console.error('Failed to clear predefined DOBs from localStorage:', e);
-  }
+export const initialStudentDobs = {
+  "23CS001": "2005-05-02",
+  "23CS002": "2006-01-05",
+  "23CS003": "2004-06-23",
+  "23CS004": "2005-07-28",
+  "23CS005": "2006-03-10",
+  "23CS006": "2004-06-09",
+  "23CS007": "2006-09-04",
+  "23CS008": "2006-10-23",
+  "23CS009": "2006-04-30",
+  "23CS010": "2005-02-11",
+  "23CS011": "2004-01-17",
+  "23CS012": "2006-07-19",
+  "23CS013": "2006-06-22",
+  "23CS014": "2005-09-15",
+  "23CS015": "2005-02-16",
+  "23CS016": "2006-06-17",
+  "23CS017": "2004-07-29",
+  "23CS018": "2005-06-22",
+  "23CS019": "2006-05-20",
+  "23CS020": "2005-02-19",
+  "23CS021": "2005-01-27",
+  "23CS022": "2006-01-14",
+  "23CS023": "2004-08-17",
+  "23CS024": "2005-03-12",
+  "23CS025": "2006-02-28",
+  "23CS026": "2004-11-05",
+  "23CS027": "2005-08-19",
+  "23CS028": "2006-09-14",
+  "23CS029": "2004-12-03",
+  "23CS030": "2005-04-25",
+  "23CS031": "2006-11-18",
+  "23CS032": "2005-07-07",
+  "23CS033": "2004-10-22",
+  "23CS034": "2006-08-30",
+  "23CS035": "2005-12-15",
+  "23CS036": "2004-09-09",
+  "23CS037": "2006-03-27",
+  "23CS038": "2005-06-14",
+  "23CS039": "2004-05-18",
+  "23CS040": "2006-12-01",
+  "23CS041": "2005-10-08",
+  "23CS042": "2004-04-16",
+  "23CS043": "2006-07-25",
+  "23CS044": "2005-11-30",
+  "23CS045": "2004-03-21",
+  "23CS046": "2006-06-10",
+  "23CS047": "2005-01-09",
+  "23CS048": "2004-02-28",
+  "23CS049": "2006-10-15",
+  "23CS050": "2005-09-03"
+};
+
+export let studentDobs = loadFromStorage('voting_student_dobs', { ...initialStudentDobs });
+
+// Auto-seed default student DOBs into localStorage if missing
+if (isBrowser && !window.localStorage.getItem('voting_student_dobs')) {
+  saveToStorage('voting_student_dobs', initialStudentDobs);
 }
 
 // Migration: Clean up any default event and club categories/candidates from local storage

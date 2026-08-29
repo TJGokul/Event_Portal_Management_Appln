@@ -13,7 +13,8 @@ import {
   setElectionStatus,
   resetDb,
   managers,
-  validStudents
+  validStudents,
+  initialStudentDobs
 } from './data';
 import { ROLES, hasPermission, PERMISSIONS } from '../utils/permissions';
 
@@ -128,7 +129,7 @@ export const handlers = [
       storedDob = foundStudent.dob || foundStudent.dateOfBirth || null;
     }
 
-    // Fallback: Check secondary mapping in case it's stored separately in localStorage
+    // Fallback: Check secondary mapping in case it's stored separately in localStorage or initialStudentDobs
     if (!storedDob && typeof window !== 'undefined' && window.localStorage) {
       try {
         const rawDobs = window.localStorage.getItem('voting_student_dobs');
@@ -139,6 +140,10 @@ export const handlers = [
       } catch (e) {
         console.error('Error reading secondary voting_student_dobs:', e);
       }
+    }
+
+    if (!storedDob) {
+      storedDob = initialStudentDobs[cleanId] || null;
     }
 
     // Check if the entered DOB matches the stored DOB
